@@ -1,0 +1,96 @@
+/* Estilos para la página de inicio de sesión */
+.login_page {
+  display: flex; /* Utiliza el modelo de caja flexible */
+  height: 100vh; /* Establece la altura de la página al 100% del alto de la ventana */
+}
+
+/* Estilos para la sección izquierda (con el logo) */
+.left_section {
+  flex: 1; /* Toma el espacio disponible restante en la dirección principal */
+  background-color: #F2F2F2; /* Color de fondo de la sección izquierda */
+  display: flex; /* Utiliza el modelo de caja flexible */
+  justify-content: center; /* Centra horizontalmente el contenido */
+  align-items: center; /* Centra verticalmente el contenido */
+}
+
+/* Estilos para el logo de la compañía */
+/* Cambia el tamaño del logo en dispositivos móviles */
+.company_logo {
+  max-width: 80%; /* Reduce el tamaño del logo en dispositivos móviles */
+}
+
+
+/* Estilos para la sección derecha (con el fondo de color) */
+.right_section {
+  flex: 1; /* Toma el espacio disponible restante en la dirección principal */
+  position: relative; /* Posición relativa para alinear elementos hijos */
+}
+
+/* Estilos para el fondo dividido de la sección derecha */
+.background {
+  position: absolute; /* Posición absoluta para cubrir la sección derecha */
+  top: -55%; /* Desplazamiento vertical negativo para expandir el fondo */
+  right: 0; /* Alineación a la derecha */
+  bottom: 0; /* Extiende hasta la parte inferior */
+  left: -80%; /* Desplazamiento horizontal negativo para ampliar el fondo rojo */
+  background: linear-gradient(70deg, #F2F2F2 50%, #F20505 50%); /* Gradiente de colores */
+  z-index: -1; /* Coloca el fondo detrás de otros elementos */
+}
+
+/* Estilos para el contenedor de los botones */
+.button_container {
+  position: absolute; /* Posición absoluta para controlar su ubicación */
+  top: 50%; /* Alinea la parte superior del contenedor en el centro vertical */
+  left: 60%; /* Alinea el lado izquierdo del contenedor en el 60% del ancho */
+  transform: translate(-50%, -50%); /* Centra el contenedor en ambas direcciones */
+  text-align: center; /* Centra el contenido de los botones */
+  width: 50%; /* Establece el ancho del contenedor */
+}
+
+/* Estilos para los botones */
+.login_button {
+  font-size: 3vh; /* Tamaño de la fuente relativo al alto de la pantalla */
+  margin: 10px; /* Margen exterior de los botones */
+  padding: 20px 20px; /* Espaciado interno (arriba/abajo izquierda/derecha) */
+  background-color: #0498AC; /* Color de fondo inicial */
+  color: #ffffff; /* Color del texto */
+  border: 3px solid #037a8a; /* Borde del botón */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  width: 100%; /* Ancho del botón */
+}
+
+/* Efecto al pasar el mouse sobre los botones */
+.login_button:hover {
+  transition: background-color 0.10s ease, color 0.2s ease; /* Transiciones suaves */
+  background-color: #037a8a; /* Cambio de color de fondo al pasar el mouse */
+  border-radius: 20px; /* Cambio de radio del borde al pasar el mouse */
+}
+
+/* Media Query para dispositivos móviles con un ancho máximo de 768px */
+@media screen and (max-width: 768px) {
+
+  /* Modifica los estilos aquí para dispositivos móviles */
+  .login_page {
+    flex-direction: column; /* Apila los elementos en dispositivos móviles */
+  }
+  .left_section,
+  .right_section {
+    flex: 1; /* Vuelve a ocupar todo el espacio disponible */
+    width: 100%; /* Ancho completo en dispositivos móviles */
+  }
+  .right_section {
+    background-color:#F20505;
+  }
+  .background {
+    display: none; /* Oculta el fondo en dispositivos móviles */
+  }
+  .button_container {
+    top: 40%; /* Ajusta la posición vertical de los botones */
+    left: 50%; /* Centra los botones horizontalmente */
+    transform: translate(-50%, -50%);
+  }
+  .company_logo {
+    max-width: 40%; /* Reduce el tamaño del logo en dispositivos móviles */
+  }
+}
