@@ -10,6 +10,6 @@ const orderSchema = mongoose.Schema({
         type: Date,
         default: null,
     }});
-
+    
 const Order = mongoose.model('Order', orderSchema);
 export default Order;
