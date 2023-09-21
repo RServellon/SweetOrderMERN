@@ -28,7 +28,7 @@ export const createAdmin = async (req, res) => {
 
     try {
         await newAdmin.save();
-        res.status(201).json(newAdmin );
+        res.status(201).json(newAdmin);
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
