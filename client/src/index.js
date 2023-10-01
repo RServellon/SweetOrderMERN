@@ -4,6 +4,7 @@ import Login from './Components/Login.js';
 import ClienteMain from './Components/Client/ClientMain.js';
 import AdminMain from './Components/Admin/AdminMain.js';
 import ListAdmin from './Components/Admin/ListAdmin.js';
+import ErrorMain from './Components/Error/Error.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route path="/cliente" element={<ClienteMain />} />
         <Route path="/admin" element={<AdminMain />} />
         <Route path="/listadmin" element={<ListAdmin />} />
+        <Route path="/error" element={<ErrorMain/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

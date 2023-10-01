@@ -3,7 +3,7 @@ import { getAdmins, getAdmin, createAdmin, updateAdmin, deleteAdmin } from '../c
 const router = express.Router();
 
 router.get('/admins', getAdmins);
-router.get('/admins/:id', getAdmin);
+router.get('/admins/:cedula/:password', getAdmin);
 router.post('/admins/', createAdmin);
 router.patch('/admins/:id', updateAdmin);
 router.delete('/admins/:id', deleteAdmin);

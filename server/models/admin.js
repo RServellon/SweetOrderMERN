@@ -8,5 +8,5 @@ const adminSchema = mongoose.Schema({
     phoneNumber: String
 });
 
-const Admim = mongoose.model('Admin', adminSchema);
-export default Admim;
+const Admin = mongoose.model('Admin', adminSchema);
+export default Admin;
