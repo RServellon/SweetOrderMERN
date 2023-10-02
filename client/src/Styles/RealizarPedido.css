@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.imagen-responsive {
+    max-width: 100%; /* La imagen no superará el ancho del contenedor padre */
+    height: auto; /* Mantendrá la proporción de aspecto original */
+    display: block; /* Elimina el espacio adicional debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente si es necesario */
+    /* Ajusta el tamaño según tus necesidades */
+    width: 200px; /* Ancho deseado */
+    height: auto; /* Altura ajustada automáticamente para mantener la proporción */
+  }

@@ -2,6 +2,7 @@ import Header from '../ReuseComponents/Header.js';
 import "../../Styles/Client.css";
 import { Routes } from 'react-router-dom';
 import { Link, Route } from 'react-router-dom'; 
+import RealizarPedido from './RealizarPedido.js';
 
 function ClientMain() {
   return (
@@ -17,11 +18,12 @@ function ClientMain() {
         
         
         <div className='bottons'>
-        <button  className="client-button">Realizar un pedido</button>
+        <Link to="pedido"><button  className="client-button">Realizar un pedido</button></Link>
         <button  className="client-button">Ver estado del pedido</button>
         <Link to="/"> <button className="client-button">Regresar</button></Link>
         <Routes>
         <Route path="/" element={ <login /> } />
+        <Route path='pedido' element= {<RealizarPedido/>} />
         </Routes>
          
         

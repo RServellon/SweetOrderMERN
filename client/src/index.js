@@ -5,6 +5,7 @@ import ClienteMain from './Components/Client/ClientMain.js';
 import AdminMain from './Components/Admin/AdminMain.js';
 import ListAdmin from './Components/Admin/ListAdmin.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RealizarPedido from './Components/Client/RealizarPedido.js';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,6 +15,8 @@ ReactDOM.render(
         <Route path="/cliente" element={<ClienteMain />} />
         <Route path="/admin" element={<AdminMain />} />
         <Route path="/listadmin" element={<ListAdmin />} />
+        <Route path='/cliente/pedido' element={<RealizarPedido/>} />
+        <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
