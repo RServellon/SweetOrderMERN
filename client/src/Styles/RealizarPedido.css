@@ -11,3 +11,20 @@
     width: 200px; /* Ancho deseado */
     height: auto; /* Altura ajustada automáticamente para mantener la proporción */
   }
+
+  .hover-effect:hover img {
+    /* Estilos para la imagen al hacer hover en el div padre */
+    transform: scale(1.1); /* Ejemplo: aumentar el tamaño */
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+  }
+  
+  .hover-effect:hover h2 {
+    /* Estilos para el h2 al hacer hover en el div padre */
+    text-decoration-line: underline; /* Subrayado */
+    /* Otros estilos aquí */
+  }
+
+  .zoomable-image {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
