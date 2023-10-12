@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const packSchema = mongoose.Schema({
     name: String,
+    detail: String,
     available: Boolean,
     price: Number,
     image: {
