@@ -6,6 +6,12 @@ import { Routes } from 'react-router-dom';
 import { Link, Route, useNavigate } from 'react-router-dom';
 import PackEspecifico from './PackEspecifico';
 
+/**
+ * 
+ * @param {packs} listPacks 
+ * @returns muestra todos los paquetes disponibles
+ */
+
 //TODO if available === false, agregar imagen de agotado y que no se pueda seleccionar
 const Articulo = ({ packs }) => {
     const navigate = useNavigate();
@@ -16,7 +22,7 @@ const Articulo = ({ packs }) => {
     // }
 
     useEffect(() => {
-        console.log(packs);
+        //console.log(packs);
     }, []);
 
     return (

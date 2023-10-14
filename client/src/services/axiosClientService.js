@@ -16,3 +16,4 @@ export const getAllPacks = () => {
 export const getPackById = (id) => {
     return axios.get(`http://localhost:5000/api/packs/${id}`)
 }
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Menu from './Menu';
+import Menu from '../../ReuseComponents/Menu';
 import { getPackById } from '../../../services/axiosClientService';
 import PackEspecíficoInformacion from './PackEspecíficoInformacion';
 import Header from '../../ReuseComponents/HeaderClientes';

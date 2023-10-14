@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import Bear from '../../../Images/gum.png'
 import '../../../Styles/RealizarPedido.css'
+import { addToCart, getCart } from '../../../services/Cart'; // Importa las funciones del carrito
 
-
+/**
+ * 
+ * @param {pack} paqueteEspecifico 
+ * @returns la vista de cada paquete, para agregar al carrito uno por uno
+ */
 const PackEspecíficoInformacion = ({ pack }) => {
     // Estado para controlar el estado de zoom de la imagen
     const [isZoomed, setIsZoomed] = useState(false);
@@ -14,8 +19,15 @@ const PackEspecíficoInformacion = ({ pack }) => {
         contador === 0 && action === 'decrement' ? setcontador(0) : action === 'decrement' ? setcontador(contador - 1) : setcontador(contador + 1)
     }
 
-    const handleAddCarrito = () => {
+    const handleAddCarrito = (id, cantidad) => {
+        const productId = 1;
+        const quantity = 2;
+        const price = 10.99;
 
+        addToCart(id, cantidad);
+
+        const cart = getCart();
+        console.log(cart);
     }
 
 
@@ -59,7 +71,7 @@ const PackEspecíficoInformacion = ({ pack }) => {
                     h-12 rounded-lg 
                     hover:border hover:border-solid hover:border-red-700
                     lg:w-[40%] '
-                    onClick={() => handleAddCarrito}>Agregar al carrito</button>
+                        onClick={() => handleAddCarrito (pack._id, contador)}>Agregar al carrito</button>
                 </div>
             </div>
         </div>

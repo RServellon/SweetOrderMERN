@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../Styles/RealizarPedido.css'
-import Menu from './Components/Menu'
+import Menu from '../ReuseComponents/Menu'
 import { getAllPacks } from '../../services/axiosClientService'
 import Articulo from './Components/Articulo'
 import Bear from '../../Images/gum.png'
@@ -26,7 +26,8 @@ function RealizarPedido() {
   }, [])
 
   return (
-    <div className='w-screen'>
+    <div className='w-screen bg-gray-100'>
+      
       <HeaderClientes />
       <Menu />
       <div className='bg-gray-100 flex flex-wrap justify-center gap-4 px-6  lg:grid lg:gap-5 lg:grid-cols-4'>
