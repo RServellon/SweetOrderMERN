@@ -22,9 +22,19 @@ export const getPack = async (req, res) => {
 }
 
 export const createPack = async (req, res) => {
-    const { name, available, price, image } = req.body;
+    const { name, available, price } = req.body;
+    const imageBuffer = req.file.buffer; // Obtiene la imagen cargada
 
-    const newPack = new Pack({ name, available, price, image })
+    // Crea un nuevo paquete con la imagen almacenada en el buffer
+    const newPack = new Pack({
+        name,
+        available,
+        price,
+        image: {
+            data: imageBuffer,
+            contentType: req.file.mimetype // Obtiene el tipo de contenido de la imagen
+        }
+    });
 
     try {
         await newPack.save();
@@ -35,12 +45,28 @@ export const createPack = async (req, res) => {
 }
 
 export const updatePack = async (req, res) => {
-    const { id } = req.params;
-    const { name, available, price, image } = req.body;
+    // const { id } = req.params;
+    // const { name, available, price, image } = req.body;
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const updatedPack = { name, available, price, image, _id: id };
+    // const updatedPack = { name, available, price, image, _id: id };
+    // await Pack.findByIdAndUpdate(id, updatedPack, { new: true });
+    // res.json(updatedPack);
+
+    const { id } = req.params;
+    const { name, available, price } = req.body; // Campos para actualizar
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No pack with id: ${id}`);
+
+    const updatedPack = { name, available, price, _id: id };
+    
+    // Actualiza la imagen solo si se proporciona una nueva
+    if (req.file) {
+        updatedPack.image.data = req.file.buffer;
+        updatedPack.image.contentType = req.file.mimetype;
+    }
+
     await Pack.findByIdAndUpdate(id, updatedPack, { new: true });
     res.json(updatedPack);
 }
