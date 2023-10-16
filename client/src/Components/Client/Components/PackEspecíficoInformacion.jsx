@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Bear from '../../../Images/gum.png'
 import '../../../Styles/RealizarPedido.css'
 import { addToCart, getCart } from '../../../services/Cart'; // Importa las funciones del carrito
-
+import axios from 'axios';
+import Buffer from 'buffer';
 /**
  * 
  * @param {pack} paqueteEspecifico 
@@ -31,6 +32,67 @@ const PackEspecíficoInformacion = ({ pack }) => {
     }
 
 
+
+
+    //Prueba imagenes
+    const [image, setImage] = useState(null);
+    const [name, setName] = useState('Hola');
+    const [detail, setDetail] = useState('zxzzz');
+    const [available, setAvailable] = useState(false);
+    const [price, setPrice] = useState(10000);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            const base64Image = e.target.result;
+            setImage(base64Image);
+        };
+
+        reader.readAsDataURL(file);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Asegúrate de que `image` contenga los datos de la imagen cargada en formato base64
+
+        const packageData = {
+            name: 'Nombre', // Cambia estos valores según sea necesario
+            detail: 'Detalle',
+            available: true,
+            price: 1000,
+            image: image, // Asegúrate de que `image` contenga los datos de la imagen
+        };
+
+        try {
+            await axios.post('http://localhost:5000/api/packs', packageData);
+            // Resto del manejo de respuesta
+        } catch (error) {
+            // Manejo de errores
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/packs');
+                // Procesa la respuesta exitosa aquí
+                console.log('Data from the server:', response.data);
+            } catch (error) {
+                // Manejo de errores
+                alert('Something went wrong: ' + error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+
+
+
     return (
         <div className='bg-gray-100 md:flex' id='div-grande'>
             <div className='flex flex-col items-center md:w-[50%] md:mt-8' id='div-image'>
@@ -39,7 +101,7 @@ const PackEspecíficoInformacion = ({ pack }) => {
                     className='w-[95%] h-[20rem] rounded-2xl 
                   sm:w-[90%] sm:h-[27rem] md:w-[85%] md:h-[25rem] lg:h-[24rem]
                   xl:h-[22rem] xl:w-[70%] 2xl:h-[21rem] 2xl:w-[60%]'
-                    src={Bear}
+                    src={pack.image}
                     alt='Imagen del paquete'
                 />
 
@@ -71,8 +133,16 @@ const PackEspecíficoInformacion = ({ pack }) => {
                     h-12 rounded-lg 
                     hover:border hover:border-solid hover:border-red-700
                     lg:w-[40%] '
-                        onClick={() => handleAddCarrito (pack._id, contador)}>Agregar al carrito</button>
+                        onClick={() => handleAddCarrito(pack._id, contador)}>Agregar al carrito</button>
                 </div>
+
+                <form onSubmit={handleSubmit}>
+                    <input type="file" accept="image/*" onChange={handleImageChange} />
+                    <button type="submit">Submit</button>
+                </form>
+
+              
+                
             </div>
         </div>
     );
