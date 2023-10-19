@@ -28,7 +28,7 @@ const PackEspecíficoInformacion = ({ pack }) => {
         addToCart(id, cantidad);
 
         const cart = getCart();
-        console.log(cart);
+       // console.log(cart);
     }
 
 
@@ -79,7 +79,7 @@ const PackEspecíficoInformacion = ({ pack }) => {
             try {
                 const response = await axios.get('http://localhost:5000/api/packs');
                 // Procesa la respuesta exitosa aquí
-                console.log('Data from the server:', response.data);
+                //console.log('Data from the server:', response.data);
             } catch (error) {
                 // Manejo de errores
                 alert('Something went wrong: ' + error);
@@ -136,10 +136,10 @@ const PackEspecíficoInformacion = ({ pack }) => {
                         onClick={() => handleAddCarrito(pack._id, contador)}>Agregar al carrito</button>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                {/* <form onSubmit={handleSubmit}>
                     <input type="file" accept="image/*" onChange={handleImageChange} />
                     <button type="submit">Submit</button>
-                </form>
+                </form> */}
 
               
                 

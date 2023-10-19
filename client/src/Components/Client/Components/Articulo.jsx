@@ -30,7 +30,7 @@ const Articulo = ({ packs }) => {
             <Link to={`/cliente/pedido/${packs._id}`}>
                 {/* Imagen */}
                 <img
-                    src={Bear}
+                    src={packs.image}
                     alt="Nombre del producto"
                     className="w-60 h-40 md:w-72 md:h-56 lg:w-60 lg:h-40 rounded-lg mx-auto hover:under"
                 />

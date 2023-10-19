@@ -78,7 +78,8 @@ function App() {
           <div className="justify-end py-3 sm:hidden">
             <div className='flex gap-7 justify-end mr-6'>
               <BsPerson className='h-10 w-10 hover:cursor-pointer' />
-              <AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer' />
+              <Link to='/cliente/pedido/carrito'><AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer text-black' />
+              </Link>
             </div>
           </div>
 
