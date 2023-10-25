@@ -1,11 +1,41 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from '../ReuseComponents/Header.js';
 import '../../Styles/Admin.css';
 import { Routes } from 'react-router-dom';
 import { Link, Route } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import Error from '../Error/Error.js';
 
 function ListAdmin() {
+  const [orders, setOrders] = useState([]);
+  const handleOrders = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/orders`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.ok) {
+        // éxito
+        const data = await response.json();
+        setOrders(data);
+        console.log('Respuesta del servidor:', data);
+        
+      } else {
+        // error
+        
+      }
+    } catch (error) {
+      console.error('Error al realizar la solicitud al servidor:', error);
+    }
+  };
+  useEffect(() => {
+    handleOrders();
+  }, []);
   return (
+    
     <div className="admin-container">
       <Header />
       <div className="admin-content">
@@ -39,64 +69,31 @@ function ListAdmin() {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>001</td>
-                <td>$100.00</td>
-                <td>2023-09-20</td>
-                <td>Juan Pérez</td>
-                <td>Pendiente </td>
-                <td class="buttons" >
+        {orders.map((order) => (
+              <tr key={order._id}>
+                <td>{order.codigo}</td>
+                <td>₡{order.montoTotal.toFixed(2)}</td>
+                <td>{new Date(order.fechaEntrega).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                    })}
+                </td>
+                <td>{order.cliente}</td>
+                <td>{order.estado}</td>
+                <td className="buttons">
                   <button className="green-button">&#10003;</button>
                   <button className="red-button">&#10007;</button>
                 </td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>$75.50</td>
-                <td>2023-09-22</td>
-                <td>Maria González</td>
-                <td>Pendiente</td>
-                <td class="buttons" >
-                  <button className="green-button">&#10003;</button>
-                  <button className="red-button">&#10007;</button>
-                </td>
-            </tr>
-            <tr>
-                <td>003</td>
-                <td>$200.25</td>
-                <td>2023-09-25</td>
-                <td>Luis Rodríguez</td>
-                <td>Finalizado</td>
-                <td class="buttons" >
-                  <button className="green-button">&#10003;</button>
-                  <button className="red-button">&#10007;</button>
-                </td>
-            </tr>
-            <tr>
-                <td>004</td>
-                <td>$50.00</td>
-                <td>2023-09-18</td>
-                <td>Ana López</td>
-                <td>Pendiente</td>
-                <td class="buttons" >
-                  <button className="green-button">&#10003;</button>
-                  <button className="red-button">&#10007;</button>
-                </td>
-            </tr>
-            <tr>
-                <td>005</td>
-                <td>$120.75</td>
-                <td>2023-09-23</td>
-                <td>Pablo Martínez</td>
-                <td>En Proceso</td>
-                <td class="buttons" >
-                  <button className="green-button">&#10003;</button>
-                  <button className="red-button">&#10007;</button>
-                </td>
-            </tr>
+              </tr>
+            ))}
             
         </tbody>
     </table>
+      <div>
+        <Link to="/admin"> <button className="admin-button">Regresar</button></Link>
+        
+      </div>
       </div>
     </div>
   );

@@ -20,7 +20,6 @@ export const getAdmin = async (req, res) => {
             // Verificar la contraseña (asegúrate de que admin.password esté hasheado y comparar hashes en lugar de texto plano)
             console.log(admin)
             if (admin.password === password) {
-                console.log('exito')
                 res.status(200).json(admin);
             } else {
                 res.status(401).json({ message: "Contraseña incorrecta" });
@@ -32,7 +31,6 @@ export const getAdmin = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-
 
 export const createAdmin = async (req, res) => {
     const { cedula, name, password, email, phone } = req.body;

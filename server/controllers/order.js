@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export const getOrders = async(req, res) => {
     try{
-        const orders = await Order.find();
+        const orders = await Order.find()
         res.status(200).json(orders);
     } catch (error){
         res.status(404).json({ message: error.message});
