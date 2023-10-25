@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import '../../../Styles/RealizarPedido.css'
-import Logo from "../../../Images/Logo.png"
-import Sesion from "../../../Images/iniciar_sesion.png"
-import Cart from "../../../Images/shopping_cart.png"
+import '../../Styles/RealizarPedido.css'
+import Logo from "../../Images/Logo.png"
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import OpenBurgerMenu from './OpenBurgerMenu';
+import OpenBurgerMenu from '../Client/Components/OpenBurgerMenu';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -42,7 +41,10 @@ function App() {
             <div className="justify-end py-3">
               <div className='flex gap-7 justify-end mr-6'>
                 <BsPerson className='h-10 w-10 hover:cursor-pointer' />
-                <AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer' />
+                <Link to='/cliente/pedido/carrito'><AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer text-black' />
+                </Link>
+                <span className='absolute top-28 right-4 flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white text-sm'>5</span>
+
               </div>
             </div>
           </div>
@@ -76,7 +78,8 @@ function App() {
           <div className="justify-end py-3 sm:hidden">
             <div className='flex gap-7 justify-end mr-6'>
               <BsPerson className='h-10 w-10 hover:cursor-pointer' />
-              <AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer' />
+              <Link to='/cliente/pedido/carrito'><AiOutlineShoppingCart className='h-10 w-10 hover:cursor-pointer text-black' />
+              </Link>
             </div>
           </div>
 
