@@ -8,6 +8,8 @@ import Error from '../Error/Error.js';
 
 function ListAdmin() {
   const [orders, setOrders] = useState([]);
+  const [paramm, setParamm] = useState(''); 
+  const [filtro, setFiltro] = useState('codigo');
   const handleOrders = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/orders`, {
@@ -31,6 +33,82 @@ function ListAdmin() {
       console.error('Error al realizar la solicitud al servidor:', error);
     }
   };
+  const handleOrdersFiltro = async () => {
+    try {
+      
+      if (paramm !== '' && filtro === 'codigo'){
+        const response = await fetch(`http://localhost:5000/api/ordersCodigo/${paramm}`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        }
+        });
+        if (response.ok) {
+          // éxito
+          const cliente = await response.json();
+          const data = []
+          data.push(cliente)
+          setOrders(data);
+          console.log('Respuesta del servidor:', data);
+        
+        } else {
+        // error
+        
+        } 
+      }
+      if (paramm !== '' && filtro === 'nombre'){
+        const response = await fetch(`http://localhost:5000/api/ordersCliente/${paramm}`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        }
+        });
+        if (response.ok) {
+          // éxito
+          const cliente = await response.json();
+          const data = []
+          data.push(cliente)
+          setOrders(data);
+          console.log('Respuesta del servidor:', data);
+        
+        } else {
+        // error
+        
+        } 
+      }
+
+      if (filtro === 'pendiente' || filtro === 'en proceso' || filtro === 'finalizado'){
+        const response = await fetch(`http://localhost:5000/api/ordersEstado/${filtro}`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        }
+        });
+        if (response.ok) {
+          // éxito
+          const cliente = await response.json();
+          if(Array.isArray(cliente)){
+            setOrders(cliente);
+          }else{
+            const data = []
+            data.push(cliente)
+            setOrders(data);
+            console.log('Respuesta del servidor:', data);
+          }
+
+        } else {
+        // error
+        
+        } 
+      }
+
+      if (filtro === 'todos'){
+        handleOrders();
+      }
+    } catch (error) {
+      console.error('Error al realizar la solicitud al servidor:', error);
+    }
+  };
   useEffect(() => {
     handleOrders();
   }, []);
@@ -44,16 +122,23 @@ function ListAdmin() {
         </div>
         <div className="filter">
           <label htmlFor="filtros">Filtrar pedido por: </label>
-          <select id="filtros" name="filtros">
-            <option value="Numero de identificador">Numero de identificador</option>
-            <option value="Nombre">Nombre</option>
-            <option value="Fecha">Fecha de entrega</option>
-            <option value="Pendientes">Pendientes</option>
-            <option value="En proceso">En proceso</option>
-            <option value="Finalizados">Finalizados</option>
+          <select id="filtros" name="filtros" onChange={(e) => setFiltro(e.target.value)}>
+            <option value="codigo">Código</option>
+            <option value="nombre">Nombre del Cliente</option>
+            <option value="necha">Fecha de entrega</option>
+            <option value="pendiente">Pendientes</option>
+            <option value="en proceso">En proceso</option>
+            <option value="finalizado">Finalizados</option>
+            <option value="todos">Todos</option>
           </select>
-          <input type="text" className='searchinput'></input>
-          <button className='search'>Buscar</button>
+          <input
+              className='searchinput'
+              type="text"
+              id="filtro"
+              value={paramm}
+              onChange={(e) => setParamm(e.target.value)}
+            />
+          <button className='search' onClick={handleOrdersFiltro}>Buscar</button>
         </div>
 
     <table>
