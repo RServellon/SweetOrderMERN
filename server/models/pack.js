@@ -2,12 +2,10 @@ import mongoose from 'mongoose';
 
 const packSchema = mongoose.Schema({
     name: String,
+    detail: String,
     available: Boolean,
     price: Number,
-    image: {
-        data: Buffer, // Almacenar los datos de la imagen como un buffer
-        contentType: String // Tipo de contenido de la imagen (por ejemplo, "image/jpeg" o "image/png")
-    }
+    image: String
 });
 
 const Pack = mongoose.model('Pack', packSchema);
