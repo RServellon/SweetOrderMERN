@@ -12,7 +12,6 @@ function AdminMain() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-
   const handleLogin = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/admins/${cedula}/${password}`, {
@@ -70,9 +69,9 @@ function AdminMain() {
             />
           </div>
           <div className='bottons'>
-          <button className="admin-button" onClick={handleLogin}>Ingresar</button>
-          
           <Link to="/"> <button className="admin-button">Regresar</button></Link>
+          <button className="admin-button" onClick={handleLogin}>Ingresar</button>
+         
           <Routes>
           <Route path="/" element={ <login /> } />
           <Route path="/listadmin" element={ <ListAdmin /> } />
