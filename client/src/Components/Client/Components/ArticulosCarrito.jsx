@@ -17,7 +17,7 @@ const ArticulosCarrito = ({ packs }) => {
         const newCartList = packs.map((pack) => {
             // Aquí creas un objeto para cada elemento en packs
             return {
-                imagen: pack.articulo.data.imagen,
+                imagen: pack.articulo.data.image,
                 name: pack.articulo.data.name,
                 id: pack.productId,
                 precio: pack.articulo.data.price,
@@ -87,7 +87,7 @@ const ArticulosCarrito = ({ packs }) => {
                             <div className='flex-col'>
                                 <div className='flex'>
                                     <div className='w-1/3 paddingDesktopCarrito '>
-                                        <img src={WW} alt="Nombre del producto" className="sm:w-[70%] h-40 rounded-2xl" />
+                                        <img src={pack.imagen} alt="Nombre del producto" className="sm:w-[70%] h-40 rounded-2xl" />
                                     </div>
                                     <div className='flex-col w-1/3  paddingDesktopCarrito  text-center self-center'>
                                         <p className='text-sm'>{pack.name}</p>
