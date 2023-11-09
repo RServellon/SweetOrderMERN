@@ -31,7 +31,7 @@ function App() {
               </div>
 
               <div className='flex mt-2'>
-                <div className='basis-1/3'><p className="hover:underline cursor-pointer">Home</p></div>
+                <div className='basis-1/3'><Link to="/cliente"> <p className="text-black hover:underline cursor-pointer">Home</p></Link></div>
                 <div className='basis-1/3'> <p className="hover:underline cursor-pointer">Ubicación</p></div>
                 <div className='basis-1/3'><p className="hover:underline cursor-pointer">Contacto</p></div>
               </div>
