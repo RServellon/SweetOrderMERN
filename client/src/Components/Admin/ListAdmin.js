@@ -118,7 +118,7 @@ function ListAdmin() {
       <Header />
       <div className="admin-content">
         <div className="welcome">
-          <h1>Busqueda de pedidos</h1>
+          <h1>Búsqueda de pedidos</h1>
         </div>
         <div className="filter">
           <label htmlFor="filtros">Filtrar pedido por: </label>
