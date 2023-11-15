@@ -15,6 +15,31 @@ body {
     display: inline-block;
 }
 
+.client-Pedido{
+  background-color: #f7fafc; /* Fondo blanco para el contenido */
+  padding: 10px;
+  border-radius: 10px;
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el cuadro */
+  text-align: center;
+}
+
+#filtrosClient, .searchinput {
+  margin: 1vh;
+  padding: 5px; 
+  font-size: 16px; 
+  border: 1px solid #f7fafc; 
+  border-radius: 5px; 
+  background-color: #f7fafc; 
+  width: 40vh;
+}
+
+
+#filtrosClient option {
+  padding: 5px; 
+  font-size: 14px; 
+  background-color: #f7fafc; 
+}
+
 .client-button{
  
   padding: 1vh;
